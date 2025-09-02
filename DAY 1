@@ -29,7 +29,7 @@ ssh -MS /tmp/jmp student@10.50.13.116
 64 bytes from 192.168.28.111
 
 #Create Dynamic Port Forward
-ssh -S /tmp/jmp jump -0 forward -D9050
+ssh -S /tmp/jmp jump -O forward -D9050
 
 ##Scan found hosts
 proxychains nmap 192.168.28.100,105,111
@@ -120,3 +120,6 @@ ssh -S /tmp/t1 t1 -O forward -L3111:192.168.150.28:80 -L3112:192.168.150.28:22
 
 ##Recon found username2 and password and authenticate to new systemm
 ss -MS /tmp/t2 username@127.0.0.1 -p3112
+
+Nmap Script
+proxychains nmap --script=http-enum 192.168.28.100
