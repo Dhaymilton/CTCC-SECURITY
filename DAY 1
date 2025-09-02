@@ -18,6 +18,8 @@ On the jump box we wil only be running PING SWEEPS becuase its not neccesarily a
 Ping Sweep example:
 for i in {97..126}; do (ping -c 1 192.168.28.$i | grep "bytes from" &); done
 
+  ********START**************
+
 ##OP NOTES
   ##Control Sockets
 ssh -MS /tmp/jmp student@10.50.13.116
