@@ -6,7 +6,7 @@ JASH-021-M a90xdqSDrHlp 10.50.13.116
 
 ##jump is a filler word
 
-##Control Sockets
+##Control Sockets - JUMP BOX
 ssh -MS /tmp/jmp student@10.50.13.116
 
 -M uses multiplexing - allows us to use the same one connecion for multiple things.
