@@ -1,0 +1,39 @@
+step  - Static analysis
+
+1. check source code - look for key words/scroll up or use ctrl f
+2. look for strings 
+
+Behavioral Analysis
+yes to analyze then analyze
+
+use the search on ghidra. use strings at the bottom
+
+put term in the filter
+
+**use google to find out what things mean***
+
+
+
+********C Source Code********
+1.What does the printf() function do?
+It sends formatted output to standard out (E.g. the terminal)
+
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+
+7.
+
+8.
+
+9.
+
+10.
+
+
