@@ -9,53 +9,51 @@ They are the first return registers for x86-64 and x86
 A - They are the 64 bit and 32 bit stack base pointers
 
 4.What is %R8 size in bits?
-A - 
+A - 64
 
 5.Which of these registers has a size of 32 bits?
-A -
+A - %R12D
 
 6.What register does the JE instruction rely upon?
 A - 
 
 7. What flag does the JE instruction rely upon?
-A - 
+A - Zero Flag
 
 8.What does the CMP instruction do?
-A - 
+A - Compares 2 values via subtraction
 
 9.Main:
-   Mov R8, 25
-   Push R8
-   Mov R10, 50
-   Push R10
-   Pop RAX
+mov r8, 25      ; R8 = 25
+push r8         ; Push 25 onto the stack
+mov r10, 50     ; R10 = 50
+push r10        ; Push 50 onto the stack
+pop rax         ; Pop top of stack (50) into RAX
 
 What value is on the top of the stack?
+A - 25
 
 10. Main:
-   Mov R8, 25
-   Push R8
-   Mov R10, 50
-   Push R10
-   Pop RAX
+mov r8, 25      ; R8 = 25
+push r8         ; Stack: [25]
+mov r10, 50     ; R10 = 50
+push r10        ; Stack: [50, 25]
+pop rax         ; RAX = 50, Stack: [25]
+
 
 What value is in the return register?
- A-
+ A - 50
 
 11. Main:
-    Mov R9, 5
-    Mov R10, 20
-    Add R10, R9
-    CMP R10, R9
-    JE Clean
-    Mov RAX, 14
-    ret
-
-Clean:
-    Mov RAX, 0
-    ret
+mov r9, 5        ; R9 = 5
+mov r10, 20      ; R10 = 20
+add r10, r9      ; R10 = R10 + R9 → 25
+cmp r10, r9      ; Compare 25 with 5 → ZF = 0 (not equal)
+je Clean         ; Jump if equal → does NOT jump
+mov rax, 14      ; RAX = 14
+ret              ; Return 14
 
 What value is returned?
 
-A -
+A - 14
 
