@@ -1,0 +1,61 @@
+********Assembly******
+1. What is %RAX and %EAX main purpose?
+They are the first return registers for x86-64 and x86
+
+2.What is %RIP and %EIP main purpose?
+%RIP/%EIP are the 64 bit and 32 bit instruction pointers that hold the memory address to the next instruction
+
+3. What is %RBP and %EBP main purpose?
+A - They are the 64 bit and 32 bit stack base pointers
+
+4.What is %R8 size in bits?
+A - 
+
+5.Which of these registers has a size of 32 bits?
+A -
+
+6.What register does the JE instruction rely upon?
+A - 
+
+7. What flag does the JE instruction rely upon?
+A - 
+
+8.What does the CMP instruction do?
+A - 
+
+9.Main:
+   Mov R8, 25
+   Push R8
+   Mov R10, 50
+   Push R10
+   Pop RAX
+
+What value is on the top of the stack?
+
+10. Main:
+   Mov R8, 25
+   Push R8
+   Mov R10, 50
+   Push R10
+   Pop RAX
+
+What value is in the return register?
+ A-
+
+11. Main:
+    Mov R9, 5
+    Mov R10, 20
+    Add R10, R9
+    CMP R10, R9
+    JE Clean
+    Mov RAX, 14
+    ret
+
+Clean:
+    Mov RAX, 0
+    ret
+
+What value is returned?
+
+A -
+
