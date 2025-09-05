@@ -3,20 +3,73 @@
 1.What does the printf() function do?
 It sends formatted output to standard out (E.g. the terminal)
 
-2.
+2.What does the fgets() function do?
+ A - It reads a line from the specified stream and stores it into a character array
 
-3.
+3. What does the strcmp() function do?
+A - It compares two strings (character arrays)
 
-4.
+4. What is a successful return code for the strcmp() function if the two strings are the same?
+A - 0
 
-5.
+5. What is main()?
+A - It is the designated entry point to a program
 
-6.
+6. int main(void){
+       int num1 = 77;
+       printf("%d",num1);
+       return 0;
+}
+What is num1’s variable type?
 
-7.
+A - int
 
-8.
+7. int main(void){
+       int num1 = 77;
+       printf("%d",num1);
+       return 0;
+}
+What is num1’s value?
 
-9.
+A - 77
 
-10.
+8. int main(void){
+       int num1 = 77;
+       printf("%d",num1);
+       return 0;
+}
+What value is printed to the terminal upon execution?
+
+A - 77
+
+9. int main(void){
+       int num1 = 77;
+       printf("%d",num1);
+       return 0;
+}
+What is “%d” in this program?
+
+A -  %d is a format specifier for a signed decimal/integer
+
+10. int main(void){
+       int num1 = 77;
+       printf("%d",num1);
+       return 0;
+}
+What is important about “return 0”?
+ 
+A - A return code of 0 is generally a clean exit of the program
+
+11. int main(void){
+     char *word1 = “word”;
+     char *word2 = “words”;
+     if(strcmp(word1,word2)==0){
+     printf(“same”);
+  }
+  else{
+     printf(“different”);
+  }
+}
+What is returned to stdout when executed?
+
+A - different
