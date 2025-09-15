@@ -1,0 +1,14 @@
+gtfobins.github.io
+
+### First find out current user sudo privileges
+
+##SUDO DEMO
+
+#id - displays a user's UID, GID, and group memberships in Linux or Unix systems.
+#sudo -l - lists the commands a user is allowed (or forbidden) to run with sudo, based on the system’s sudoers configuration
+
+
+Cover - Log Sanitization 1 
+
+07F4
+8054
