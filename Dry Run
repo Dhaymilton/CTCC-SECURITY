@@ -148,4 +148,22 @@ now that were on roundsensor  ls -lisa on /home
 
 cat /etc/hosts
 
-find / -perm /6000 -type f 
+find / -perm /60000 -ls 2>dev/null
+
+after that run
+https://gtfobins.github.io/ website to find exploit in the sudo files to gain a shell
+
+make a new dynamic tunell to the new website
+
+ssh -S /tmp/t2 t2 -0[options] forward -L42071:1912.168.28.189:3389
+
+xfreerdp /u:Aaron /p:appleBottomJ3an$ /v:127.0.0.1:42071
+
+******will not be using port 999*********
+
+
+
+
+
+
+ 
